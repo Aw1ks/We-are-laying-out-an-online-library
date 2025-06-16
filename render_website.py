@@ -15,12 +15,6 @@ def load_json(file_name):
         json_file = my_file.read()
 
     received_json_file = json.loads(json_file)
-    # genres = set()
-
-    # for book in received_json_file:
-    #     genres.update(book.get('genres', '').split(', '))
-
-    # return received_json_file, list(genres)
     return received_json_file
 
 
@@ -50,16 +44,10 @@ def main():
         print(number_pages)
 
         for num_page, book  in enumerate(chunked_meta_data, 1):
-            # for genres in book:
-            #     genres_str = genres.get('genres', '')
-            #     genres_list = [genre.strip() for genre in genres_str.split(',')]
-            #     print(f"Жанры книги '{genres['title']}': {genres_list}")
-
             rendered_page = template.render(
                 books=book,
                 current_page=num_page,
                 number_pages=number_pages,
-                # genres=genres_list
             )
 
             filename = f"pages/index{num_page}.html"
