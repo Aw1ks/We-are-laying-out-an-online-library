@@ -4,7 +4,6 @@ import os
 import shutil
 import math
 
-from pprint import pprint
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from livereload import Server
