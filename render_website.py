@@ -14,12 +14,6 @@ def load_json(file_name):
         received_json_file = json.load(my_file)
     return received_json_file
 
-
-def rebuild():
-    ...
-    print('REBUILD')
-
-
 def main():
     characters_folder = 'pages'
     if os.path.exists(characters_folder):
@@ -38,8 +32,6 @@ def main():
         chunked_meta_data = more_itertools.chunked(meta_data, 10)
         number_pages = math.ceil(len(meta_data) / 10)
         
-        print(number_pages)
-
         for num_page, book  in enumerate(chunked_meta_data, 1):
             rendered_page = template.render(
                 books=book,
