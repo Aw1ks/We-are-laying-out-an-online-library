@@ -11,9 +11,7 @@ from livereload import Server
 
 def load_json(file_name):
     with open(file_name, "r", encoding="utf-8") as my_file:
-        json_file = my_file.read()
-
-    received_json_file = json.loads(json_file)
+        received_json_file = json.load(my_file)
     return received_json_file
 
 
