@@ -15,10 +15,9 @@ def load_json(file_name):
     return received_json_file
 
 def main():
-    characters_folder = 'pages'
-    if os.path.exists(characters_folder):
-        shutil.rmtree(characters_folder)
-    os.makedirs(characters_folder)
+    folder = 'pages'
+    shutil.rmtree(folder, ignore_errors=True)
+    os.makedirs(folder, exist_ok=True)
 
     env = Environment(
         loader=FileSystemLoader('.'),
@@ -45,8 +44,6 @@ def main():
 
     else:
         print('Файл meta_data.json пуст.')
-
-    rebuild()
 
     server = Server()
     server.watch('template.html', main)
