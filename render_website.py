@@ -48,8 +48,9 @@ def main():
 
     meta_data = load_json(args.info_folder)
 
-    chunked_meta_data = more_itertools.chunked(meta_data, 10)
-    number_pages = math.ceil(len(meta_data) / 10)
+    number_books_per_page = 10
+    chunked_meta_data = more_itertools.chunked(meta_data, number_books_per_page)
+    number_pages = math.ceil(len(meta_data) / number_books_per_page)
     
     for num_page, book  in enumerate(chunked_meta_data, 1):
         rendered_page = template.render(
