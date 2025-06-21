@@ -11,7 +11,7 @@ from livereload import Server
 
 
 def load_json(file_name):
-    with open(file_name, "r", encoding="utf-8") as my_file:
+    with open(file_name, 'r', encoding='utf-8') as my_file:
         received_json_file = json.load(my_file)
     return received_json_file
 
@@ -59,7 +59,7 @@ def main():
             number_pages=number_pages,
         )
 
-        filename = f"pages/index{num_page}.html"
+        filename = f'pages/index{num_page}.html'
         with open(filename, 'w', encoding='utf8') as file:
             file.write(rendered_page)
 
@@ -68,5 +68,5 @@ def main():
     server.serve(root='.', default_filename='pages/index1.html')
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
