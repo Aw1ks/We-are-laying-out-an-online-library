@@ -6,7 +6,6 @@ import math
 import argparse
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-
 from livereload import Server
 
 

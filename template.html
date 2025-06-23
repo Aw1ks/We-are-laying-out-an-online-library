@@ -1,73 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../static/bootstrap-4.3.1-dist/css/bootstrap.min.css">
-  <title>Document</title>
-</head>
-<body>
-  <nav aria-label="Page navigation example" class="col-6 mx-auto pt-3">
-    <ul class="pagination">
-      <li class="page-item">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+    <title>Document</title>
+  </head>
+  <body>
+    <nav aria-label="Page navigation example" class="col-6 mx-auto pt-3">
+      <ul class="pagination">
+        <li class="page-item">
 
-        {% if current_page > 1 %}
-          <a class="page-link" href="../pages/index{{ current_page - 1 }}.html">Previous</a>
-        {% else %}
-          <a class="page-link disabled" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-        {% endif %}
+          {% if current_page > 1 %}
+            <a class="page-link" href="../pages/index{{ current_page - 1 }}.html">Previous</a>
+          {% else %}
+            <a class="page-link disabled" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+          {% endif %}
 
-      </li>
-
-      {% for num_page in range(1, number_pages + 1) %}
-        <li class="page-item {% if num_page == current_page %}active{% endif %}">
-          <a class="page-link" href="../pages/index{{ num_page }}.html">{{ num_page }}</a>
         </li>
-      {% endfor %}
 
-      <li class="page-item">
+        {% for num_page in range(1, number_pages + 1) %}
+          <li class="page-item {% if num_page == current_page %}active{% endif %}">
+            <a class="page-link" href="../pages/index{{ num_page }}.html">{{ num_page }}</a>
+          </li>
+        {% endfor %}
 
-        {% if current_page < number_pages %}
-          <a class="page-link" href="../pages/index{{ current_page + 1 }}.html">Next</a>
-        {% else %}
-          <a class="page-link disabled" href="#" tabindex="-1" aria-disabled="true">Next</a>
-        {% endif %}
+        <li class="page-item">
 
-      </li>
-    </ul>
-  </nav>
+          {% if current_page < number_pages %}
+            <a class="page-link" href="../pages/index{{ current_page + 1 }}.html">Next</a>
+          {% else %}
+            <a class="page-link disabled" href="#" tabindex="-1" aria-disabled="true">Next</a>
+          {% endif %}
 
-  <div class="container">
-    <div class="row">
+        </li>
+      </ul>
+    </nav>
 
-      {% for book in books %}
-        <div class="col-6">
-          <div class="card mb-3" style="max-width: 540px;">
-            <div class="row no-gutters">
-              <div class="col-md-4">
-                <img src="../media/{{ book.img_src }}" class="card-img" alt="картинка книги">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">{{ book.title }}</h5>
-                  <p class="card-text">{{ book.author }}</p>
-                  <p class="card-text">{{ book.description }}</p>
+    <div class="container">
+      <div class="row">
 
-                  {% for genre in book.genres.split(',') %}
-                    <span class="badge badge-secondary">{{ genre.strip() }}</span>
-                  {% endfor %}
-                  
-                  <br/>
-                  <a href="../{{ book.book_path }}" target="_blank" class="btn btn-primary">Читать</a>
+        {% for book in books %}
+          <div class="col-6">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img src="../media/{{ book.img_src|urlencode }}" class="card-img" alt="картинка книги">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ book.title }}</h5>
+                    <p class="card-text">{{ book.author }}</p>
+                    <p class="card-text">{{ book.description }}</p>
+
+                    {% for genre in book.genres.split(',') %}
+                      <span class="badge badge-secondary">{{ genre.strip() }}</span>
+                    {% endfor %}
+                    
+                    <br/>
+                    <a href="../{{ book.book_path|urlencode }}" target="_blank" class="btn btn-primary">Читать</a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
         {% endfor %}
-        
+
       </div>
     </div>
-    
   </body>
 </html>
